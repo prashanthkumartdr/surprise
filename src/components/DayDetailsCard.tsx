@@ -755,8 +755,12 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                             <img 
                               src={
                                 activePhotoIdx === 0 
-                                  ? 'ChatGPT Image Jun 28, 2026, 07_03_32 PM.png'
-                                      : '1762614002860.png'
+                                  ? 'images/shutter_0.jpg'
+                                  : activePhotoIdx === 1
+                                    ? 'images/shutter_2.jpg'
+                                    : activePhotoIdx === 2
+                                      ? 'images/shutter 4.jpg'
+                                      : 'images/shutter_4.jpeg'
                               }
                               alt="Meeting Snapshot"
                               className="w-full h-full object-cover select-none"
