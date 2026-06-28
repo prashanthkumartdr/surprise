@@ -768,21 +768,12 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                                   : activePhotoIdx === 1
                                     ? '/images/shutter_2.jpg'
                                     : activePhotoIdx === 2
-                                      ? '/images/shutter 4.jpg'
+                                      ? '/images/shutter%204.jpg'
                                       : '/images/shutter_4.jpeg'
                               }
                               alt="Meeting Snapshot"
                               className="w-full h-full object-cover select-none"
                               referrerPolicy="no-referrer"
-                              onError={(e) => {
-                                const fallbacks = [
-                                  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
-                                  "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&auto=format&fit=crop&q=80",
-                                  "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&auto=format&fit=crop&q=80",
-                                  "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&auto=format&fit=crop&q=80"
-                                ];
-                                e.currentTarget.src = fallbacks[activePhotoIdx];
-                              }}
                             />
 
                             {/* Index status banner overlay */}
