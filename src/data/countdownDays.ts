@@ -225,7 +225,8 @@ I’m just really happy I saw you today. Truly. 🤍`,
     hinglishQuoteId: 'excitement-quote',
     hollowQuote: 'The countdown is getting super cozy! Get ready for endless smiles, Ammu 💫',
     photos: [
-      'https://images.unsplash.com/photo-1518199266791-5375a83190b7'
+      // 'https://images.unsplash.com/photo-1518199266791-5375a83190b7'
+      "Day_6.29.30.jpeg"
     ],
     interactiveType: 'birthday_excitement',
     interactiveData: {
