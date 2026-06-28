@@ -768,8 +768,8 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                                   : activePhotoIdx === 1
                                     ? '/images/shutter_2.jpg?v=4'
                                     : activePhotoIdx === 2
-                                      ? '/images/shutter_3.jpg?v=4'
-                                      : '/images/shutter_4.jpg?v=4'
+                                      ? '/images/shutter_4.jpeg?v=4'
+                                      : '/images/shutter_3.jpeg?v=4'
                               }
                               alt="Meeting Snapshot"
                               className="w-full h-full object-cover select-none"
