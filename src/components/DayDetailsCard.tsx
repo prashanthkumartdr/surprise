@@ -764,12 +764,12 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                               key={activePhotoIdx}
                               src={
                                 activePhotoIdx === 0 
-                                  ? '/images/shutter_0.jpg'
+                                  ? '/images/shutter_0.jpg?v=4'
                                   : activePhotoIdx === 1
-                                    ? '/images/shutter_2.jpg'
+                                    ? '/images/shutter_2.jpg?v=4'
                                     : activePhotoIdx === 2
-                                      ? '/images/shutter%204.jpg'
-                                      : '/images/shutter_4.jpeg'
+                                      ? '/images/shutter_3.jpg?v=4'
+                                      : '/images/shutter_4.jpg?v=4'
                               }
                               alt="Meeting Snapshot"
                               className="w-full h-full object-cover select-none"
