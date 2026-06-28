@@ -12,6 +12,14 @@ import {
 } from 'lucide-react';
 import { DayData, MemorialStory, MoodboardItem, ParallelAdventure } from '../types';
 
+const resolveImageUrl = (url: string | undefined): string => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) {
+    return url;
+  }
+  return `/${url}`;
+};
+
 interface DayDetailsCardProps {
   day: DayData;
   isUnlocked: boolean;
@@ -381,7 +389,7 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                   className="vintage-photo-frame w-64 rotate-2 transform transition-transform"
                 >
                   <img 
-                    src={day.photos[0]} 
+                    src={resolveImageUrl(day.photos[0])} 
                     alt="Memory Visual" 
                     className="w-full h-48 object-cover rounded"
                     referrerPolicy="no-referrer"
@@ -492,7 +500,7 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                             {/* POLAROID FRONT */}
                             <div className="absolute inset-0 backface-hidden bg-white p-2.5 rounded shadow-md border border-slate-100 flex flex-col justify-between">
                               <img 
-                                src={item.image} 
+                                src={resolveImageUrl(item.image)} 
                                 alt={item.caption}
                                 className="w-full h-24 object-cover rounded"
                                 referrerPolicy="no-referrer"
@@ -755,12 +763,12 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                             <img 
                               src={
                                 activePhotoIdx === 0 
-                                  ? 'images/shutter_0.jpg'
+                                  ? '/images/shutter_0.jpg'
                                   : activePhotoIdx === 1
-                                    ? 'images/shutter_2.jpg'
+                                    ? '/images/shutter_2.jpg'
                                     : activePhotoIdx === 2
-                                      ? 'images/shutter 4.jpg'
-                                      : 'images/shutter_4.jpeg'
+                                      ? '/images/shutter_3.jpg'
+                                      : '/images/shutter_4.jpg'
                               }
                               alt="Meeting Snapshot"
                               className="w-full h-full object-cover select-none"
@@ -1491,7 +1499,7 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
                                 className="bg-white p-1.5 rounded-lg border border-pink-100 shadow-sm relative overflow-hidden transition-all"
                               >
                                 <img 
-                                  src={pic} 
+                                  src={resolveImageUrl(pic)} 
                                   alt={`Minni Memory ${idx + 1}`} 
                                   className="w-full h-24 object-cover rounded"
                                   referrerPolicy="no-referrer"
