@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif-elegant: "Playfair Display", serif;
+  --font-handwritten: "Dancing Script", cursive;
+  --font-loveletter: "Great Vibes", cursive;
+  --font-poppins: "Poppins", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
+}
+
+/* Custom global overrides for scrapbooking and luxury aesthetic */
+body {
+  font-family: var(--font-poppins);
+  background-color: #fffbfa;
+  overflow-x: hidden;
+  color: #2d262a;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fff0f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffb7c5;
+  border-radius: 9px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff85a1;
+}
+
+/* Base keyframe animations */
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(40px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(60px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.45);
+  }
+}
+
+@keyframes fireflySparkle {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(0.8) translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2) translateY(-10px);
+  }
+}
+
+@keyframes heartbeatWave {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  40% {
+    transform: scale(1.25);
+    opacity: 0.9;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Animated utility helper classes */
+.float-bougainvillea-1 {
+  animation: floatUp 16s linear infinite;
+}
+.float-bougainvillea-2 {
+  animation: floatUp 22s linear infinite;
+  animation-delay: -3s;
+}
+.float-bougainvillea-3 {
+  animation: floatUp 19s linear infinite;
+  animation-delay: -7s;
+}
+.float-bougainvillea-4 {
+  animation: floatUp 25s linear infinite;
+  animation-delay: -11s;
+}
+.float-bougainvillea-5 {
+  animation: floatUp 28s linear infinite;
+  animation-delay: -15s;
+}
+
+.vintage-photo-frame {
+  position: relative;
+  border-radius: 4px;
+  background: white;
+  padding: 12px 12px 36px 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.vintage-photo-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+}
+
+.letter-scrapbook-texture {
+  background-color: #faf6f0;
+  background-image: radial-gradient(#ece1d3 0.8px, transparent 0.8px), radial-gradient(#ece1d3 0.8px, #faf6f0 0.8px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.glow-romantic {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+.animated-sparkle {
+  animation: fireflySparkle 3s infinite ease-in-out;
+}
+
+.heart-beat-glow {
+  animation: heartbeatWave 1.4s infinite ease-in-out;
+}
+
+/* Flower vectors styled using absolute position */
+.bougainvillea-corner {
+  background-image: radial-gradient(circle, rgba(226, 88, 117, 0.1) 0%, transparent 70%);
+}

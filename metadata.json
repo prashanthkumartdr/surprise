@@ -1,0 +1,6 @@
+{
+  "name": "Ammu Sagufta's Birthday Surprise",
+  "description": "A cinematic, emotional, ultra-aesthetic 10-day birthday countdown for Ammu Sagufta, filled with memories, custom illustrations, music, and handwritten stories.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
