@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Sparkles, MapPin, Calendar, Clock, Lock, 
   Unlock, Volume2, Smile, ArrowRight, BookOpen, Send, Map,
-  Gift, ExternalLink
+  Gift, ExternalLink, Eye, EyeOff, Copy, Check
 } from 'lucide-react';
 import { DayData, MemorialStory, MoodboardItem, ParallelAdventure } from '../types';
 
@@ -161,6 +161,11 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
   const [giftTab, setGiftTab] = useState<'card' | 'stuffed' | 'flowers'>('card');
   const [stuffedPatted, setStuffedPatted] = useState<number>(0);
   const [sprinkledSparkles, setSprinkledSparkles] = useState<boolean>(false);
+  const [revealedGifts, setRevealedGifts] = useState<boolean>(false);
+  const [showCode1, setShowCode1] = useState<boolean>(false);
+  const [showCode2, setShowCode2] = useState<boolean>(false);
+  const [copiedCode1, setCopiedCode1] = useState<boolean>(false);
+  const [copiedCode2, setCopiedCode2] = useState<boolean>(false);
 
   // Day 6 Friendship Mixer States
   const [activeMixerIngredients, setActiveMixerIngredients] = useState<string[]>([]);
@@ -1756,17 +1761,99 @@ export const DayDetailsCard: React.FC<DayDetailsCardProps> = ({
 
                             <p className="text-xs text-slate-700 font-light leading-relaxed mb-4">
                               <Sparkles className="inline text-amber-500 mr-1 pb-0.5" size={13} />
-                              <strong>Chintu's Birthday Wish:</strong> Since I’m miles away, this is a small ticket to bring some real joy to your day. Please use the link below to redeem some wonderful chocolate treats and a beautiful fresh set of flowers. Treat yourself, Sagufta, because your goodness deserves the absolute best!
+                              <strong>Chintu's Birthday Wish:</strong> Since I’m miles away, this is a small ticket to bring some real joy to your day. Please click the button below to reveal your surprise chocolate treats and a beautiful fresh set of flowers. Treat yourself, Sagufta, because your goodness deserves the absolute best!
                             </p>
 
-                            <a 
-                              href={day.interactiveData.giftCardLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="w-full py-2.5 bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold rounded-xl transition-all shadow-md inline-flex items-center justify-center gap-1.5"
-                            >
-                              Redeem Your Gift Card <ExternalLink size={12} />
-                            </a>
+                            {!revealedGifts ? (
+                              <button
+                                onClick={() => setRevealedGifts(true)}
+                                className="w-full py-2.5 bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold rounded-xl transition-all shadow-md inline-flex items-center justify-center gap-1.5 cursor-pointer"
+                              >
+                                Redeem Your Gift Card <Sparkles size={12} />
+                              </button>
+                            ) : (
+                              <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="space-y-4 mt-4 pt-4 border-t border-rose-100"
+                              >
+                                <p className="text-[11px] text-[#e25875] font-semibold tracking-wider uppercase">
+                                  🎁 Your Revealed Birthday Gifts
+                                </p>
+                                
+                                {/* Gift 1 */}
+                                <div className="bg-white/95 p-3 rounded-xl border border-pink-100 shadow-sm flex flex-col gap-2">
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs font-semibold text-slate-800 flex items-center gap-1">
+                                      <span>💐</span> BlinkIt Voucher Number
+                                    </span>
+                                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-medium">Active</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <code className="text-xs font-mono font-bold tracking-wider text-slate-700 flex-1 select-all">
+                                      {showCode1 ? '6010540021758062' : '•••••••••••••••••••••'}
+                                    </code>
+                                    <button
+                                      onClick={() => setShowCode1(!showCode1)}
+                                      className="p-1.5 hover:bg-slate-200 rounded text-slate-500 transition-colors cursor-pointer"
+                                      title={showCode1 ? "Hide code" : "Reveal code"}
+                                    >
+                                      {showCode1 ? <EyeOff size={14} /> : <Eye size={14} />}
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        navigator.clipboard.writeText('6010540021758062');
+                                        setCopiedCode1(true);
+                                        setTimeout(() => setCopiedCode1(false), 2000);
+                                      }}
+                                      className="p-1.5 hover:bg-slate-200 rounded text-slate-500 transition-colors cursor-pointer relative"
+                                      title="Copy code"
+                                    >
+                                      {copiedCode1 ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                                    </button>
+                                  </div>
+                                  {copiedCode1 && (
+                                    <span className="text-[10px] text-emerald-600 font-medium ml-1">Copied successfully!</span>
+                                  )}
+                                </div>
+
+                                {/* Gift 2 */}
+                                <div className="bg-white/95 p-3 rounded-xl border border-pink-100 shadow-sm flex flex-col gap-2">
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-xs font-semibold text-slate-800 flex items-center gap-1">
+                                      <span>🍫</span> BlinkIt Voucher Pin
+                                    </span>
+                                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-medium">Active</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <code className="text-xs font-mono font-bold tracking-wider text-slate-700 flex-1 select-all">
+                                      {showCode2 ? '114405' : '•••••••••••••••••••••'}
+                                    </code>
+                                    <button
+                                      onClick={() => setShowCode2(!showCode2)}
+                                      className="p-1.5 hover:bg-slate-200 rounded text-slate-500 transition-colors cursor-pointer"
+                                      title={showCode2 ? "Hide code" : "Reveal code"}
+                                    >
+                                      {showCode2 ? <EyeOff size={14} /> : <Eye size={14} />}
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        navigator.clipboard.writeText('114405');
+                                        setCopiedCode2(true);
+                                        setTimeout(() => setCopiedCode2(false), 2000);
+                                      }}
+                                      className="p-1.5 hover:bg-slate-200 rounded text-slate-500 transition-colors cursor-pointer relative"
+                                      title="Copy code"
+                                    >
+                                      {copiedCode2 ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                                    </button>
+                                  </div>
+                                  {copiedCode2 && (
+                                    <span className="text-[10px] text-emerald-600 font-medium ml-1">Copied successfully!</span>
+                                  )}
+                                </div>
+                              </motion.div>
+                            )}
                           </motion.div>
                         )}
 

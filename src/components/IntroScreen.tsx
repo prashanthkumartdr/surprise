@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, Heart, Play, Clock } from 'lucide-react';
-import romanticSynth from '../utils/audioSynth';
 
 interface IntroScreenProps {
   onEnter: () => void;
@@ -81,8 +80,6 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
   }, []);
 
   const handleStart = () => {
-    // Lazy-initialize the audio for rich sensory setup
-    romanticSynth.play();
     onEnter();
   };
 
@@ -238,7 +235,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
 
             {/* Tiny whisper note */}
             <p className="text-[#ffccd5]/40 text-[10px] mt-6 font-mono tracking-wide">
-              *Tuning in Web Audio Synthesizer upon click.*
+              *Playing background music upon click.*
             </p>
           </motion.div>
         )}

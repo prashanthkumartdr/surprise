@@ -3,49 +3,89 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Volume2, VolumeX, Music, Heart } from 'lucide-react';
-import romanticSynth from '../utils/audioSynth';
 
 export const MusicPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.25);
   const [showSlider, setShowSlider] = useState<boolean>(false);
+  const [songTitle] = useState<string>("Kuch Kuch Hota Hai 🎵");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Check initial state
-    setIsPlaying(romanticSynth.getIsRunning());
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+      
+      // Auto-play on mount (safely triggered immediately after the user's initial click gesture)
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn("Autoplay on mount failed or blocked: ", err);
+        });
+    }
   }, []);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
   const togglePlayback = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
     if (isPlaying) {
-      romanticSynth.stop();
+      audio.pause();
       setIsPlaying(false);
     } else {
-      romanticSynth.play();
-      setIsPlaying(true);
+      audio.play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.error("Audio element failed to play:", err);
+        });
     }
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVol = parseFloat(e.target.value);
     setVolume(newVol);
-    romanticSynth.setVolume(newVol);
+    if (audioRef.current) {
+      audioRef.current.volume = newVol;
+    }
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+      {/* HTML5 Audio player for uploaded file */}
+      <audio
+        ref={audioRef}
+        src="/kuch_kuch.mp3"
+        loop
+        preload="auto"
+      />
+
       <AnimatePresence>
         {isPlaying && (
           <motion.div
             initial={{ opacity: 0, x: 15 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 15 }}
-            className="hidden sm:flex bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-pink-100 shadow-md text-[10px] font-mono text-[#e25875] items-center gap-2 select-none"
+            className="hidden sm:flex bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-pink-100 shadow-md text-[10px] font-mono text-[#e25875] items-center gap-2 select-none max-w-[200px] truncate"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
-            <span>Kuch Kuch Hota Hai 🎵</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping shrink-0" />
+            <span className="truncate">{songTitle}</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -62,7 +102,9 @@ export const MusicPlayer: React.FC = () => {
               onClick={() => {
                 const nv = volume === 0 ? 0.25 : 0;
                 setVolume(nv);
-                romanticSynth.setVolume(nv);
+                if (audioRef.current) {
+                  audioRef.current.volume = nv;
+                }
               }}
               className="text-[#e25875] hover:scale-110 transition-transform"
             >
@@ -96,12 +138,7 @@ export const MusicPlayer: React.FC = () => {
         <motion.button
           onClick={togglePlayback}
           onMouseEnter={() => setShowSlider(true)}
-          onMouseLeave={() => {
-            // Keep slider visible slightly for accessibility
-            setTimeout(() => {
-              // Only hide if cursor didn't move over slider, but keep it basic
-            }, 2000);
-          }}
+          onMouseLeave={() => {}}
           className={`flex items-center justify-center w-12 h-12 rounded-full shadow-lg border ${
             isPlaying 
               ? 'bg-[#e25875] text-white border-transparent glow-romantic' 

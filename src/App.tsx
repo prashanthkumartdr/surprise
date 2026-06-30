@@ -126,26 +126,13 @@ export default function App() {
               </div>
 
               {/* TIMEPASS POCKET WATCH: DATE LOCK BYPASS CONTROLS */}
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-2.5 px-4   bg-white/75 backdrop-blur-md border border-pink-100/50 rounded-full shadow-sm pr-2 text-xs select-none"
-              >
+              <div>
+              
                 <div className="flex items-center gap-1.5 py-2 pl-1">
-                  <Clock size={13} className="text-[#e25875]" />
-                  <span className="text-slate-600 font-medium">Chintu's Pocket Watch:</span>
+
                 </div>
-                <button
-                  onClick={() => setForceUnlockAll(!forceUnlockAll)}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold transition-all cursor-pointer ${
-                    forceUnlockAll 
-                      ? 'bg-amber-100 text-amber-700 shadow-sm border border-amber-200' 
-                      : 'bg-slate-100 text-slate-500'
-                  }`}
-                  id="magic-clock-bypass"
-                >
-                  {forceUnlockAll ? '⏳ Dream Portal On' : '🔒 Strict Date'}
-                </button>
-              </motion.div>
+               
+              </div>
             </header>
 
             {/* DYNAMIC CARD-HOLDER SELECTOR SLIDER: THE 10 ENVELOPE SECTIONS */}
