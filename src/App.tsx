@@ -18,7 +18,7 @@ import {
 export default function App() {
   const [isEntered, setIsEntered] = useState<boolean>(false);
   const [selectedDayIdx, setSelectedDayIdx] = useState<number>(0);
-  const [forceUnlockAll, setForceUnlockAll] = useState<boolean>(true); // Enabled by default to bypass May/June restrictions!
+  const [forceUnlockAll, setForceUnlockAll] = useState<boolean>(false); // Enabled by default to bypass May/June restrictions!
   const [activeTab, setActiveTab] = useState<'journey' | 'about_her'>('journey');
 
   const selectedDay = countdownDays[selectedDayIdx];

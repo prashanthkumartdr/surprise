@@ -357,7 +357,7 @@ With all my heart and softest hugs,
   },
   {
     dayNumber: 10,
-    title: 'Happy Birthday, Ammu Sagufta! ✨',
+    title: 'Happy Birthday, Ammu ✨',
     subtitle: 'Day 10 — My Infinite Birthday Letter to the Prettiest Soul',
     emotionalExcerpt: '“Tumhare jesa koi na toh tha, aur na hi koi ho sakta hai. Tum meri sabse khubsurat tehreer ho.”',
     storyHeading: 'July 10 — Your Birthday, Your Universe 🎂🌻',
